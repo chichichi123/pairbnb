@@ -59,3 +59,5 @@ gem 'figaro'
 gem 'omniauth-facebook'
 
 gem 'omniauth'
+
+gem 'acts-as-taggable-on', '~> 4.0'
