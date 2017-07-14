@@ -1,10 +1,16 @@
 class ListingsController < ApplicationController
 
   def index
-    @listings = Listing.all
-
+    @listings = Listing.all.page(params[:page]).per(14)
     # @listings = current_user.listings -- !!! Shows all listings from the user!
   end
+
+  # def edit
+  #   @listing = Listing.find(params[:])
+
+  #   edit_listing_path(listing.id)
+  #   /listings/:id/edit
+  # end
 
 
   def new
@@ -17,6 +23,7 @@ class ListingsController < ApplicationController
 
   def create
     @listing = current_user.listings.new(listing_params)
+
     if @listing.save
       redirect_to listing_path(@listing.id)
     else
@@ -27,7 +34,7 @@ class ListingsController < ApplicationController
     if Listing.find(params[:id]).destroy
       flash[:notice] = "You successfully deleted your listing"
     else
-      flash[:error] = "There was an errror deleeting ur listing"
+      flash[:error] = "There was an errror deleting your listing"
     end
   end
 
@@ -35,9 +42,21 @@ class ListingsController < ApplicationController
     params.require(:user).permit(:name, :tag_list) ## Rails 4 strong params usage
   end
 
+  def verify
+    @listing = Listing.find(params[:id])
+    if @listing.update(verification: "verified")
+      redirect_to listings_path
+      flash[:notice] = "You successfully verified your listing"
+
+    else
+      flash[:error] = "There was an errror verifying your listing"
+
+    end
+  end
+
 
   private
   def listing_params
-    params.require(:listing).permit(:name, :description,:price)
+    params.require(:listing).permit(:name, :description,:price, :tag_list, {images: []})
   end
 end

@@ -12,6 +12,13 @@
     <%= form.label :price %>
     <%= form.text_field :price, type: 'price' %>
   </div>
+  <div class="text-field">
+    <%= form.label :tags %>
+    <%= form.text_field :tag_list, type: 'tags' %>
+  </div>
+  <div>
+    <%= form.file_field :images, multiple: true %>
+  </div>
   <div class="submit-field">
     <%= form.submit %>
   </div>
