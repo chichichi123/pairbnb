@@ -5,3 +5,4 @@
 <p>Name of property: <%= @reservation.listing.name %></p>
 <p>Your Username: <%= @reservation.user.email %></p>
 <p>Number of Guests: <%= @reservation.number_of_guest %></p>
+<%= button_to "pay for reservation" , new_payment_path, method: :get %>

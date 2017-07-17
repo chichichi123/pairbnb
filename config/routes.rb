@@ -19,6 +19,11 @@ Rails.application.routes.draw do
   get "/welcome" => "welcome#index", as: "welcome"
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   post "/verify/:id" => "listings#verify", as: "verify"
+  get '/braintree/new' => "braintree#new", as: "new_payment"
+  post 'braintree/checkout' => "braintree#checkout"
+
+
+
   # get "/create_listing" => "clearance/listings#new", as: "create_listing"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
