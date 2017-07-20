@@ -1,16 +1,15 @@
 class ListingsController < ApplicationController
 
   def index
-    @listings = Listing.all.page(params[:page]).per(14)
-    # @listings = current_user.listings -- !!! Shows all listings from the user!
+    @listings = Listing.all.page(params[:page]).per(14).order(created_at: :desc)
+    # @listings = Listing.all
+    # if params[:search]
+    #   @listings = Listing.search(params[:search]).order("created_at DESC")
+    # else
+    #   @listings = Listing.all.order("created_at DESC")
+    # end
   end
 
-  # def edit
-  #   @listing = Listing.find(params[:])
-
-  #   edit_listing_path(listing.id)
-  #   /listings/:id/edit
-  # end
 
 
   def new

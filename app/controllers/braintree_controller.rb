@@ -15,10 +15,16 @@ class BraintreeController < ApplicationController
       }
     )
 
+    @reservation = Reservation.find(params[:id])
+
     if result.success?
       redirect_to welcome_path, :flash => { :success => "Transaction successful!" }
+      ReservationMailer.booking_email(@reservation.user, @reservation.listing.user, @reservation.id).deliver_later
+
     else
       redirect_to welcome_path, :flash => { :error => "Transaction failed. Please try again." }
     end
+
+
   end
 end

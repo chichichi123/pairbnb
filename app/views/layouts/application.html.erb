@@ -8,10 +8,6 @@
   <body>
     <div id="header">
       <% if signed_in? -%>
-        <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
-        <%= button_to "create listing", new_listing_path, method: :get %>
-      <% else -%>
-        <%= link_to t(".sign_in"), sign_in_path %>
       <% end -%>
     </div>
     <div id="flash">
@@ -19,6 +15,66 @@
         <div id="flash_<%= key %>"><%=h value %></div>
       <% end %>
     </div>
+    <style>
+      body {
+          background-color: #F8F9FF;
+      }
+    </style>
+    <div>
+      <h1 id="big"> MalaysiAIRbnb </h1>
+    </div>
+    <style>
+      #big {
+        color: #12E3E7;
+        font-size: 30pt;
+          font-family: Lucida, sans-serif;
+           ;
+          text-align: center;
+      }
+    </style>
+    <!-- <ul>
+      
+      <li><a href="/sign_out" data-method="delete">Sign out</a></li>
+      <li><%= link_to "Sign Out", sign_out_path,method: :delete %></li>
+    </ul> -->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="http://localhost:3000/welcome">MalaysiAIRbnb <span class="sr-only">(current)</span></a></li>
+            <% if signed_in? -%>
+              <li><%= link_to "Make a Reservation", listings_path,method: :get %></li>
+              <li><%= link_to "List your Home", new_listing_path,method: :get %></li>
+            <% end %>
+          </ul>
+          <% if signed_in? -%>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/sign_out"data-method="delete">Sign out</a></li>
+            </ul>
+          <% else %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/sign_in">Sign In</a></li>
+            </ul>
+          <% end %>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+    <%= form_tag(welcome_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search airbnb" %>
+      <%= submit_tag "Search", :name => nil %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

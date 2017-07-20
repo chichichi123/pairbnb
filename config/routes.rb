@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :reservations
   end
 
+
   resources :users, controller: "users", only: [:create, :edit, :update] do
     resource :password,
       controller: "clearance/passwords",
@@ -19,9 +20,11 @@ Rails.application.routes.draw do
   get "/welcome" => "welcome#index", as: "welcome"
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   post "/verify/:id" => "listings#verify", as: "verify"
-  get '/braintree/new' => "braintree#new", as: "new_payment"
-  post 'braintree/checkout' => "braintree#checkout"
+  get '/reservations/:id/braintree/new' => "braintree#new", as: "new_payment"
+  post '/reservations/:id/braintree/checkout' => "braintree#checkout", as: "braintree_checkout"
 
+
+  post '/reservations/date' => "reservations/date",as: "date"
 
 
   # get "/create_listing" => "clearance/listings#new", as: "create_listing"

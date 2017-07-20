@@ -22,6 +22,11 @@ class ReservationsController < ApplicationController
 
   end
 
+  def date
+
+    render json: {message: "hello"}
+  end
+
   private
   def reservation_params
     params.require(:reservation).permit(:start_date, :end_date, :user_id, :listing_id, :total_price, :number_of_guest)
