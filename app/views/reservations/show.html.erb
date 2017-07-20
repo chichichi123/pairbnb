@@ -1,0 +1,8 @@
+<p> reservation details </p>
+<p>Start Date: <%= @reservation.start_date %></p>
+<p>End Date: <%= @reservation.end_date %></p>
+<p>Total Price: <%= @reservation.total_price %></p>
+<p>Name of property: <%= @reservation.listing.name %></p>
+<p>Your Username: <%= @reservation.user.email %></p>
+<p>Number of Guests: <%= @reservation.number_of_guest %></p>
+<%= button_to "pay for reservation" , new_payment_path, method: :get %>

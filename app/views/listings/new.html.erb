@@ -1,0 +1,26 @@
+<h3> Put your home onto MalaysiaAIRbnb </h3>
+<%= form_for @listing do |form| %>
+  <div class="text-field">
+    <%= form.label :name %>
+    <%= form.text_field :name, type: 'name' %>
+  </div>
+  <div class="text-field">
+    <%= form.label :description %>
+    <%= form.text_field :description, type: 'description' %>
+  </div>
+  <div class="text-field">
+    <%= form.label :price %>
+    <%= form.text_field :price, type: 'price' %>
+  </div>
+  <div class="text-field">
+    <%= form.label :tags %>
+    <%= form.text_field :tag_list, type: 'tags' %>
+  </div>
+  <div>
+    <%= form.file_field :images, multiple: true %>
+  </div>
+  <div class="submit-field">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%= button_to "Show All Other listings" , listings_path, method: :get %>

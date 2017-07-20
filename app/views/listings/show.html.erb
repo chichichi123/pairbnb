@@ -1,0 +1,9 @@
+<%= @listing.name %>
+<%= @listing.description %>
+<%= @listing.price %>
+<%= @listing.tag_list %>
+<%= button_to "Add Image", { action: "create" }, remote: true, form: { "data-type" => "json" } %>
+<%= button_to "show all listings", listings_path, method: :get %>
+<% @listing.images.each do |img| %>
+  <%= image_tag img.thumb.url %>
+<% end %>

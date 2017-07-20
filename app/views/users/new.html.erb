@@ -1,0 +1,45 @@
+<div id="clearance" class="sign-up">
+  <h2><%= t(".title") %></h2>
+  <%= form_for @user do |form| %>
+    <%= render partial: '/users/form', object: form %>
+    <div class="submit-field">
+      <%= form.submit %>
+    </div>
+    <div class="other-links">
+      <%= link_to t(".sign_in"), sign_in_path %>
+    </div>
+  <% end %>
+</div>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" 
+</style>
+<body>
+  <style>
+    #images {
+        margin: auto;
+        width: 100%;
+    
+    }
+  </style>
+  <div id="images" style="max-width:500px">
+    <img class="mySlides" src="<%= image_url('house1pairbnb.jpg') %>" style="width:125%">
+    <img class="mySlides" src="<%= image_url('house2pairbnb.jpg') %>" style="width:125%">
+    <img class="mySlides" src="<%= image_url('house3pairbnb.jpg') %>" style="width:125%">
+  </div>
+  <script>
+    var myIndex = 0;
+    carousel();
+    
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+           x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) {myIndex = 1}
+        x[myIndex-1].style.display = "block";
+        setTimeout(carousel, 7000); // \Change image every 7 seconds
+    }
+  </script>
+</body>

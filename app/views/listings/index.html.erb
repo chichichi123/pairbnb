@@ -1,0 +1,20 @@
+<% @listings.each do |show| %>
+  <div class='listing col-md-6'>
+    <p>Name: <%= show.name %></p>
+    <p>Description: <%= show.price %></p>
+    <p>Price: <%= show.tag_list %></p>
+    <p>Tag: <%= show.description %></p>
+    <p> <%= show.verification %></p>
+    <% if (current_user.moderator? || current_user.admin?) && show.unverified? %>
+      <%= button_to "verify" , verify_path(show) %>
+    <% end %>
+    <% if show.verified? %>
+      <%= button_to "make reservation" , new_listing_reservation_path(show), method: :get %>
+    <% end %>
+  </div>
+<% end %>
+<%= button_to "Go to bnb Home" , welcome_path, method: :get %>
+<%= paginate @listings, window: 2 %>
+<% if @listings.blank? %>
+  <h4>There are no recipes containing the term <%= params[:search] %>.</h4>
+<% end %>

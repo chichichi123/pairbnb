@@ -5,3 +5,31 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user = {}
+user['password'] = 'asdf'
+
+ActiveRecord::Base.transaction do
+  20.times do
+    user['email'] = Faker::Internet.email
+    User.create(user)
+  end
+end
+
+# Seed Listings
+listing = {}
+uids = []
+User.all.each { |u| uids << u.id }
+
+ActiveRecord::Base.transaction do
+  40.times do
+    listing['name'] = Faker::App.name
+    listing['description'] = ["House", "Entire Floor", "Condominium", "Villa", "Townhouse", "Castle", "Treehouse", "Igloo", "Yurt", "Cave", "Chalet", "Hut", "Tent", "Other"].sample
+    listing['price'] = rand(80..500)
+    listing['description'] = Faker::Lorem.sentence
+
+    listing['user_id'] = uids.sample
+
+    Listing.create(listing)
+  end
+end
